@@ -563,7 +563,7 @@ class Pydantic(NonScalarType):
 
         # Convert the string to an XML element, making sure to format it.
         return ET.fromstring(
-            xml, parser=ET.XMLParser(encoding="utf-8", remove_blank_text=True)
+            xml, parser=ET.XMLParser(encoding="utf-8", remove_blank_text=True, resolve_entities=False)
         )
 
 
