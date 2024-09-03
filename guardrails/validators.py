@@ -783,7 +783,7 @@ class EndpointIsReachable(Validator):
 
         # Check that the URL exists and can be reached
         try:
-            response = requests.get(value)
+            response = requests.get(value, timeout=60)
             if response.status_code != 200:
                 raise EventDetail(
                     key,
