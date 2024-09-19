@@ -19,6 +19,7 @@ from guardrails.datatypes import registry as types_registry
 from guardrails.utils.docs_utils import sentence_split
 from guardrails.utils.reask_utils import FieldReAsk
 from guardrails.utils.sql_utils import SQLDriver, create_sql_driver
+from security import safe_requests
 
 try:
     import numpy as np
@@ -783,7 +784,7 @@ class EndpointIsReachable(Validator):
 
         # Check that the URL exists and can be reached
         try:
-            response = requests.get(value)
+            response = safe_requests.get(value)
             if response.status_code != 200:
                 raise EventDetail(
                     key,
