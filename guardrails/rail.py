@@ -11,7 +11,7 @@ from guardrails.schema import JsonSchema, Schema, StringSchema
 from guardrails.utils.pydantic_utils import create_xml_element_for_base_model
 
 # TODO: Logging
-XMLPARSER = ET.XMLParser(encoding="utf-8")
+XMLPARSER = ET.XMLParser(encoding="utf-8", resolve_entities=False)
 
 
 @dataclass
