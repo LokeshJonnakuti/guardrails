@@ -25,6 +25,7 @@ from guardrails.utils.reask_utils import (
     get_reasks_by_element,
 )
 from guardrails.validators import Validator, check_refrain_in_dict, filter_in_dict
+import lxml.etree
 
 if TYPE_CHECKING:
     pass
@@ -767,7 +768,7 @@ class Schema2Prompt:
         """Deconstruct a choice element into a string and cases."""
 
         def _inner(el: str) -> ET._Element:
-            el = ET.fromstring(el)
+            el = ET.fromstring(el, parser=lxml.etree.XMLParser(resolve_entities=False))
             el_copy = ET.Element(el.tag, **el.attrib)
 
             for child in el:
